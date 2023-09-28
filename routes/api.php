@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('register',[UserAuthController::class,'register']);
-Route::post('login',[UserAuthController::class,'login']);
+// ========================  Auth Routes =================================//
 
-Route::post('logout',[UserAuthController::class,'logout'])
-  ->middleware('auth:sanctum');
+Route::group(['middleware' => 'cors'], function () {
 
-
+    Route::post('register', [UserAuthController::class, 'register']);
+    Route::post('login', [UserAuthController::class, 'login']);
+    Route::post('logout', [UserAuthController::class, 'logout'])
+        ->middleware('auth:sanctum');
+});
