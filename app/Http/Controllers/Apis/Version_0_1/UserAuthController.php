@@ -44,6 +44,7 @@ class UserAuthController extends Controller
         $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
         return response()->json([
             'access_token' => $token,
+            'user' => $user
         ]);
     }
 
@@ -53,6 +54,15 @@ class UserAuthController extends Controller
 
         return response()->json([
             "message" => "logged out"
+        ]);
+    }
+
+    public function me()
+    {
+
+        return response()->json([
+
+            "user" => auth()->user()
         ]);
     }
 }

@@ -25,6 +25,9 @@ Route::group(['middleware' => 'cors'], function () {
 
     Route::post('register', [UserAuthController::class, 'register']);
     Route::post('login', [UserAuthController::class, 'login']);
+    
+    Route::post('me', [UserAuthController::class, 'me'])
+    ->middleware('auth:sanctum');
     Route::post('logout', [UserAuthController::class, 'logout'])
         ->middleware('auth:sanctum');
 });
